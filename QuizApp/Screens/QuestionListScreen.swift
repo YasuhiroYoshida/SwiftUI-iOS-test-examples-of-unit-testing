@@ -49,7 +49,7 @@ struct QuestionListScreen: View {
         }
 
       }
-      .accessibilityIdentifier("questionList")
+      .accessibilityIdentifier("questionsList")
       .listStyle(.plain)
       .buttonStyle(.plain)
 

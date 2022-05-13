@@ -10,14 +10,14 @@ import SwiftUI
 struct QuizListScreen: View {
     
     @State private var isActive: Bool = false
-    @StateObject private var quizListVM = QuizListViewModel(networkService: NetworkServiceFactory.create())
+    @StateObject private var quizzesListVM = QuizListViewModel(networkService: NetworkServiceFactory.create())
     @State private var selectedQuiz: QuizViewModel?
 
     var body: some View {
         
         NavigationView {
             
-            List(quizListVM.quizes) { quiz in
+            List(quizzesListVM.quizes) { quiz in
                
                 NavigationLink(tag: quiz, selection: $selectedQuiz) {
                     QuestionListScreen(quiz: quiz, quizSubmission: QuizSubmission(quizId: quiz.quizId))
@@ -26,9 +26,9 @@ struct QuizListScreen: View {
                 }
 
             }
-            .accessibilityIdentifier("quizList")
+            .accessibilityIdentifier("quizzesList")
             .onAppear {
-                quizListVM.populateAllQuizes()
+                quizzesListVM.populateAllQuizes()
             }
             .navigationTitle("Quizes")
         }.environment(\.rootPresentationMode, $selectedQuiz)
